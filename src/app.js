@@ -75,6 +75,9 @@ passport.deserializeUser(async (id, done) => {
 });
 
 // Mount Routes
+app.use("/", authRoutes);
+app.use("/folders", folderRoutes);
+app.use("/files", fileRoutes);
 
 // View Engine
 app.set("views", path.join(__dirname, "views"));
