@@ -2,7 +2,7 @@ import express from "express";
 import session from "express-session";
 import path from "path";
 import passport from "passport";
-import { PrismaSessionStore } from "connect-prisma-session";
+import { PrismaSessionStore } from "@quixo3/prisma-session-store";
 import prisma from "./lib/prisma.js";
 import { Strategy as LocalStrategy } from "passport-local";
 import bcrypt from "bcryptjs";
@@ -27,6 +27,7 @@ app.use(
     saveUninitialized: false,
     store: new PrismaSessionStore(prisma, {
       checkPeriod: 2 * 60 * 1000, // ms
+      dbRecordIdIsSessionId: true,
       tableName: "Session",
     }),
     cookie: {

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= file.name %></title>
+</head>
+<body>
+  <a href="/folders">← Back</a>
+
+  <h1><%= file.name %></h1>
+
+  <ul>
+    <li><strong>Size:</strong> <%= (file.size / 1024).toFixed(2) %> KB</li>
+    <li><strong>Uploaded:</strong> <%= file.createdAt.toLocaleString() %></li>
+  </ul>
+
+  <a href="/files/<%= file.id %>/download">
+    <button>Download</button>
+  </a>
+</body>
+</html>
