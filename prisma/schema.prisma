@@ -24,12 +24,13 @@ model User {
 }
 
 model Folder {
-  id        Int      @id @default(autoincrement())
-  name      String
-  userId    Int
-  user      User     @relation(fields: [userId], references: [id])
-  files     File[]
-  createdAt DateTime @default(now())
+  id            Int            @id @default(autoincrement())
+  name          String
+  userId        Int
+  user          User           @relation(fields: [userId], references: [id])
+  files         File[]
+  createdAt     DateTime       @default(now())
+  sharedFolders SharedFolder[]
 }
 
 model File {
