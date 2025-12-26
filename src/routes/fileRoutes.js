@@ -14,5 +14,6 @@ router.post(
 
 router.get("/:id", isAuthenticated, fileController.fileDetails);
 router.get("/:id/download", isAuthenticated, fileController.downloadFile);
+router.get("/:id/view", isAuthenticated, fileController.viewFile);
 
 export { router as fileRoutes };

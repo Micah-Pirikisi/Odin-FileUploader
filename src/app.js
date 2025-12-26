@@ -17,7 +17,6 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
 // Routes
 import { authRoutes } from "./routes/authRoutes.js";
 import { fileRoutes } from "./routes/fileRoutes.js";

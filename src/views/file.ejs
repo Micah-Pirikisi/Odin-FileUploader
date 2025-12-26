@@ -13,6 +13,10 @@
     <li><strong>Uploaded:</strong> <%= file.createdAt.toLocaleString() %></li>
   </ul>
 
+  <a href="/files/<%= file.id %>/view" target="_blank">
+    <button>View</button>
+  </a>
+
   <a href="/files/<%= file.id %>/download">
     <button>Download</button>
   </a>
