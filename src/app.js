@@ -1,6 +1,7 @@
 import express from "express";
 import session from "express-session";
 import path from "path";
+import { fileURLToPath } from "url";
 import passport from "passport";
 import { PrismaSessionStore } from "@quixo3/prisma-session-store";
 import prisma from "./lib/prisma.js";
@@ -12,10 +13,16 @@ const app = express();
 
 dotenv.config();
 
+// fix __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
 // Routes
 import { authRoutes } from "./routes/authRoutes.js";
 import { fileRoutes } from "./routes/fileRoutes.js";
 import { folderRoutes } from "./routes/folderRoutes.js";
+import { indexRoutes } from "./routes/indexRoutes.js";
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -69,13 +76,14 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await prisma.user.findUnique({ where: { id } });
-    done(null, rows[0]);
+    done(null, user);
   } catch (err) {
     done(err);
   }
 });
 
 // Mount Routes
+app.use("/", indexRoutes);
 app.use("/", authRoutes);
 app.use("/folders", folderRoutes);
 app.use("/files", fileRoutes);
