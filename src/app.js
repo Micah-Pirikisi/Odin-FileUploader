@@ -23,6 +23,7 @@ import { authRoutes } from "./routes/authRoutes.js";
 import { fileRoutes } from "./routes/fileRoutes.js";
 import { folderRoutes } from "./routes/folderRoutes.js";
 import { indexRoutes } from "./routes/indexRoutes.js";
+import { shareRoutes } from "./routes/shareRoutes.js";
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -85,6 +86,7 @@ passport.deserializeUser(async (id, done) => {
 // Mount Routes
 app.use("/", indexRoutes);
 app.use("/", authRoutes);
+app.use("/", shareRoutes);
 app.use("/folders", folderRoutes);
 app.use("/files", fileRoutes);
 

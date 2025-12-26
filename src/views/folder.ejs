@@ -33,5 +33,14 @@
       </li>
     <% }) %>
   </ul>
+
+  <h2>Share this folder</h2>
+    <form action="/share" method="POST">
+        <input type="hidden" name="folderId" value="<%= folder.id %>" />
+        <label>Duration (days):</label>
+        <input type="text" name="duration" value="1d" />
+        <button type="submit">Generate Link</button>
+    </form>
+
 </body>
 </html>

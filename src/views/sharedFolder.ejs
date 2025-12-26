@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= folder.name %> (Shared)</title>
+</head>
+<body>
+  <h1>Shared Folder: <%= folder.name %></h1>
+
+  <h2>Files</h2>
+  <ul>
+    <% folder.files.forEach(file => { %>
+      <li>
+        <%= file.name %> - <a href="<%= file.url %>" download>Download</a>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
