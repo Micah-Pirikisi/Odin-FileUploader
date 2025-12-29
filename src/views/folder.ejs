@@ -2,45 +2,73 @@
 <html>
 <head>
   <title><%= folder.name %></title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/upload.js" defer></script>
 </head>
 <body>
-  <a href="/folders">← Back</a>
+  <div class="app-container">
+    <header>
+      <h1 class="app-title">FileUploader</h1>
+      <nav>
+        <a href="/folders" class="back-to-folders">Back to Folders</a>
+        <form action="/logout" method="POST" style="display:inline;">
+          <button type="submit" class="btn logout-btn">Logout</button>
+        </form>
+      </nav>
+    </header>
 
-  <h1><%= folder.name %></h1>
+    <main class="content">
+      <a href="/folders" class="back-link">← Back</a>
 
-  <h2>Rename Folder</h2>
-  <form action="/folders/<%= folder.id %>/edit" method="POST">
-    <input type="text" name="name" value="<%= folder.name %>" required />
-    <button type="submit">Rename</button>
-  </form>
+      <h1><%= folder.name %></h1>
 
-  <h2>Upload File</h2>
-  <form
-    action="/files/upload"
-    method="POST"
-    enctype="multipart/form-data"
-  >
-    <input type="file" name="file" required />
-    <input type="hidden" name="folderId" value="<%= folder.id %>" />
-    <button type="submit">Upload</button>
-  </form>
+      <h2>Rename Folder</h2>
+      <form action="/folders/<%= folder.id %>/edit" method="POST">
+        <input type="text" name="name" value="<%= folder.name %>" required />
+        <button type="submit" class="btn rename-btn">Rename</button>
+      </form>
 
-  <h2>Files</h2>
-  <ul>
-    <% folder.files.forEach(file => { %>
-      <li>
-        <a href="/files/<%= file.id %>"><%= file.name %></a>
-      </li>
-    <% }) %>
-  </ul>
+      <h2>Upload File</h2>
 
-  <h2>Share this folder</h2>
-    <form action="/share" method="POST">
+      <!-- Drag-and-Drop Upload -->
+      <form id="uploadForm" action="/files/upload" method="POST" enctype="multipart/form-data" class="upload-container">
+        <input type="hidden" name="folderId" value="<%= folder.id %>" />
+        <div id="dropZone" class="drop-zone">
+          <p>Drag & drop files here, or click to select files</p>
+          <input type="file" name="file" id="fileInput" required />
+        </div>
+        <button type="submit" class="btn view-btn">Upload</button>
+      </form>
+
+      <h2>Files</h2>
+      <ul class="file-list">
+        <% folder.files.forEach(file => { %>
+          <li class="file-card">
+            <div class="file-icon">📄</div>
+            <div class="file-info">
+              <a href="/files/<%= file.id %>"><%= file.name %></a>
+              <span class="file-size"><%= (file.size / 1024).toFixed(2) %> KB</span>
+            </div>
+            <div class="file-actions">
+              <a href="/files/<%= file.id %>/view" class="btn view-btn">View</a>
+              <a href="/files/<%= file.id %>/download" class="btn download-btn">Download</a>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+
+      <h2>Share this folder</h2>
+      <form action="/share" method="POST">
         <input type="hidden" name="folderId" value="<%= folder.id %>" />
         <label>Duration (days):</label>
-        <input type="text" name="duration" value="1d" />
-        <button type="submit">Generate Link</button>
-    </form>
+        <input type="text" name="duration" value="1" />
+        <button type="submit" class="btn view-btn">Generate Link</button>
+      </form>
+    </main>
 
+    <footer>
+      <p>© 2025 FileUploader App</p>
+    </footer>
+  </div>
 </body>
 </html>

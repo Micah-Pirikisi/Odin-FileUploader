@@ -2,20 +2,36 @@
 <html>
 <head>
   <title>Register</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <h1>Register</h1>
+  <div class="app-container">
+    <header>
+      <h1 class="app-title">FileUploader</h1>
+      <nav>
+        <a href="/login">Login</a>
+      </nav>
+    </header>
 
-  <form action="/register" method="POST">
-    <label>Email</label>
-    <input type="email" name="email" required />
+    <main class="content">
+      <h1>Register</h1>
 
-    <label>Password</label>
-    <input type="password" name="password" required />
+      <form action="/register" method="POST">
+        <label>Email</label>
+        <input type="email" name="email" required />
 
-    <button type="submit">Register</button>
-  </form>
+        <label>Password</label>
+        <input type="password" name="password" required />
 
-  <p>Already have an account? <a href="/login">Login</a></p>
+        <button type="submit" class="btn view-btn">Register</button>
+      </form>
+
+      <p>Already have an account? <a href="/login" class="auth-link">Login</a></p>
+    </main>
+
+    <footer>
+      <p>© 2025 FileUploader App</p>
+    </footer>
+  </div>
 </body>
 </html>

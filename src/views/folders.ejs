@@ -2,31 +2,49 @@
 <html>
 <head>
   <title>Your Folders</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <h1>Your Folders</h1>
-
-  <form action="/logout" method="POST">
-    <button type="submit">Logout</button>
-  </form>
-
-  <h2>Create Folder</h2>
-  <form action="/folders" method="POST">
-    <input type="text" name="name" placeholder="Folder name" required />
-    <button type="submit">Create</button>
-  </form>
-
-  <h2>Folders</h2>
-  <ul>
-    <% folders.forEach(folder => { %>
-      <li>
-        <a href="/folders/<%= folder.id %>"><%= folder.name %></a>
-
-        <form action="/folders/<%= folder.id %>/delete" method="POST" style="display:inline;">
-          <button type="submit">Delete</button>
+  <div class="app-container">
+    <header>
+      <h1 class="app-title">FileUploader</h1>
+      <nav>
+        <form action="/logout" method="POST" style="display:inline;">
+          <button type="submit" class="btn logout-btn">Logout</button>
         </form>
-      </li>
-    <% }) %>
-  </ul>
+      </nav>
+    </header>
+
+    <main class="content">
+      <h1>Your Folders</h1>
+
+      <h2>Create Folder</h2>
+      <form action="/folders" method="POST">
+        <input type="text" name="name" placeholder="Folder name" required />
+        <button type="submit" class="btn view-btn">Create</button>
+      </form>
+
+      <h2>Folders</h2>
+      <ul class="folder-list">
+        <% folders.forEach(folder => { %>
+          <li class="folder-card">
+            <div class="folder-icon">📁</div>
+            <div class="folder-info">
+              <a href="/folders/<%= folder.id %>"><%= folder.name %></a>
+            </div>
+            <div class="folder-actions">
+              <form action="/folders/<%= folder.id %>/delete" method="POST">
+                <button type="submit" class="btn delete-btn">Delete</button>
+              </form>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+    </main>
+
+    <footer>
+      <p>© 2025 FileUploader App</p>
+    </footer>
+  </div>
 </body>
 </html>

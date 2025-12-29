@@ -2,17 +2,33 @@
 <html>
 <head>
   <title><%= folder.name %> (Shared)</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <h1>Shared Folder: <%= folder.name %></h1>
+  <div class="app-container">
+    <header>
+      <h1 class="app-title">FileUploader</h1>
+      <nav>
+        <a href="/">Home</a>
+      </nav>
+    </header>
 
-  <h2>Files</h2>
-  <ul>
-    <% folder.files.forEach(file => { %>
-      <li>
-        <%= file.name %> - <a href="<%= file.url %>" download>Download</a>
-      </li>
-    <% }) %>
-  </ul>
+    <main class="content">
+      <h1>Shared Folder: <%= folder.name %></h1>
+
+      <h2>Files</h2>
+      <ul class="file-list">
+        <% folder.files.forEach(file => { %>
+          <li>
+            <%= file.name %> - <a href="<%= file.url %>" download class="btn download-btn">Download</a>
+          </li>
+        <% }) %>
+      </ul>
+    </main>
+
+    <footer>
+      <p>© 2025 FileUploader App</p>
+    </footer>
+  </div>
 </body>
 </html>

@@ -2,23 +2,44 @@
 <html>
 <head>
   <title><%= file.name %></title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <a href="/folders">← Back</a>
+  <div class="app-container">
+    <header>
+      <h1 class="app-title">FileUploader</h1>
+      <nav>
+        <a href="/folders">Back to Folders</a>
+        <form action="/logout" method="POST" style="display:inline;">
+          <button type="submit" class="btn logout-btn">Logout</button>
+        </form>
+      </nav>
+    </header>
 
-  <h1><%= file.name %></h1>
+    <main class="content">
+      <a href="/folders" class="back-link">← Back</a>
 
-  <ul>
-    <li><strong>Size:</strong> <%= (file.size / 1024).toFixed(2) %> KB</li>
-    <li><strong>Uploaded:</strong> <%= file.createdAt.toLocaleString() %></li>
-  </ul>
+      <h1 class="file-title"><%= file.name %></h1>
 
-  <a href="/files/<%= file.id %>/view" target="_blank">
-    <button>View</button>
-  </a>
+      <ul class="file-details">
+        <li><strong>Size:</strong> <%= (file.size / 1024).toFixed(2) %> KB</li>
+        <li><strong>Uploaded:</strong> <%= file.createdAt.toLocaleString() %></li>
+      </ul>
 
-  <a href="/files/<%= file.id %>/download">
-    <button>Download</button>
-  </a>
+      <div class="file-actions">
+        <a href="/files/<%= file.id %>/view" target="_blank">
+          <button class="btn view-btn">View</button>
+        </a>
+
+        <a href="/files/<%= file.id %>/download">
+          <button class="btn download-btn">Download</button>
+        </a>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2025 FileUploader App</p>
+    </footer>
+  </div>
 </body>
 </html>
